@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+
+target 'PeytonA' do
+    
+pod 'Masonry'
+pod 'JPush'
+pod 'MJExtension'
+
+end
+

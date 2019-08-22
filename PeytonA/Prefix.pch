@@ -1,0 +1,44 @@
+//
+//  Prefix.pch
+//  WebViewStructure
+//
+//  Created by Company on 2018/8/9.
+//  Copyright © 2018年 Company. All rights reserved.
+//
+
+#ifndef Prefix_pch
+#define Prefix_pch
+
+#ifdef __OBJC__
+
+#define WDIsiPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define WDIsiPhoneX [[UIScreen mainScreen] bounds].size.width >=375.0f && [[UIScreen mainScreen] bounds].size.height >=812.0f&& WDIsiPhone
+
+//状态栏高度
+#define kStatusBarHeight  (CGFloat)(WDIsiPhoneX?(44):(20))
+// 导航栏高度
+#define kNavBarHeight  (44)
+// 状态栏和导航栏总高度
+#define kNavBarHeightWithStatusBar  (CGFloat)(WDIsiPhoneX?(88):(64))
+// TabBar高度
+#define kTabBarHeight  (CGFloat)(WDIsiPhoneX?(49+34):(49))
+// 顶部安全区域远离高度
+#define kTopBarSafeHeight  (CGFloat)(WDIsiPhoneX?(44):(0))
+// 底部安全区域远离高度
+#define kBottomSafeHeight  (CGFloat)(WDIsiPhoneX?(34):(0))
+// iPhoneX的状态栏高度差值
+#define kTopBarDifHeight  (CGFloat)(WDIsiPhoneX?(24):(0))
+
+#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
+
+#define WDRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+#import <Masonry/Masonry.h>
+#import "UIButton+DHQStyle.h"
+#import "UIView+DHQExtension.h"
+#import "GlobalConst.h"
+#import "WDUtil_Web.h"
+
+#endif
+
+#endif /* Prefix_pch */
