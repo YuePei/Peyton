@@ -116,9 +116,9 @@
         [self insertSubview:_pageControl aboveSubview:self.scrollView];
         [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(-50);
-            make.width.mas_equalTo(200);
+            make.width.mas_equalTo(80);
             make.centerX.mas_equalTo(self.centerX);
-            make.height.mas_equalTo(50);
+            make.height.mas_equalTo(30);
         }];
         _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:247 / 255.0 green:232 / 255.0 blue:90 / 255.0 alpha:1];
         _pageControl.pageIndicatorTintColor = [UIColor darkGrayColor];

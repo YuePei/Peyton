@@ -20,7 +20,7 @@ static const float rightInset = 10;
 static const float topInset = 10;
 static const float bottomInset = 10;
 static const float lineSpacing = 10;
-static const float interitemSpacing = 5;
+static const float interitemSpacing = 20;
 
 NSString *const reuseID = @"mainPageCell";
 
@@ -39,7 +39,6 @@ NSString *const reuseID = @"mainPageCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self collectionView];
-    
 }
 
 #pragma mark lazy
@@ -50,8 +49,8 @@ NSString *const reuseID = @"mainPageCell";
         [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.top.mas_equalTo(0);
         }];
-        _backgroundImageView.image = [UIImage imageNamed:@"bgImage"];
-//        _backgroundImageView.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:31 / 255.0 blue:29 / 255.0 alpha:0.8];
+//        _backgroundImageView.image = [UIImage imageNamed:@"bgImage"];
+        _backgroundImageView.backgroundColor = [UIColor colorWithRed:39 / 255.0 green:52 / 255.0 blue:43 / 255.0 alpha:0.8];
     }
     return _backgroundImageView;
 }

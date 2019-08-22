@@ -182,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4D36142307E5FE00D07099 /* PeytonA.entitlements */,
-				9F3CC836230A4D6F00B7911A /* IdentityObjects */,
+				9F3CC836230A4D6F00B7911A /* Animals */,
 				9C5C6AFC23057139000DF0A2 /* SVProgressHUD */,
 				9CE5749523056C6D00E9ABC2 /* AppDelegate.h */,
 				9CE5749623056C6D00E9ABC2 /* AppDelegate.m */,
@@ -220,7 +220,7 @@
 			path = PeytonA;
 			sourceTree = "<group>";
 		};
-		9F3CC836230A4D6F00B7911A /* IdentityObjects */ = {
+		9F3CC836230A4D6F00B7911A /* Animals */ = {
 			isa = PBXGroup;
 			children = (
 				9FAC1001230E24CB0058294A /* Tools */,
@@ -229,7 +229,7 @@
 				9F3CC837230A4ED900B7911A /* Model */,
 				9F3CC839230A4ED900B7911A /* Views */,
 			);
-			path = IdentityObjects;
+			path = Animals;
 			sourceTree = "<group>";
 		};
 		9F3CC837230A4ED900B7911A /* Model */ = {

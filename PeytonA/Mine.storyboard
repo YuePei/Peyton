@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MainVC-->
+        <!--动物-->
         <scene sceneID="yjB-Ir-6Tp">
             <objects>
                 <viewController id="Myk-4Z-0vw" customClass="MainVC" sceneMemberID="viewController">
@@ -22,11 +22,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="动物" id="FFE-FW-7R6"/>
                     <navigationItem key="navigationItem" id="HkG-Gp-7bj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBW-jO-wPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271.0144927536232" y="217.63392857142856"/>
+            <point key="canvasLocation" x="1591" y="-640"/>
         </scene>
     </scenes>
 </document>
