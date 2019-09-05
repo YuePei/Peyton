@@ -2,8 +2,8 @@
 //  BigPicturesView.m
 //  PeytonA
 //
-//  Created by Peyton on 2019/8/21.
-//  Copyright © 2019 乐培培. All rights reserved.
+//  Created by Company on 2019/8/21.
+//  Copyright © 2019 Company. All rights reserved.
 //
 
 #import "BigPicturesView.h"
@@ -117,7 +117,7 @@
         [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(-50);
             make.width.mas_equalTo(80);
-            make.centerX.mas_equalTo(self.centerX);
+            make.centerX.mas_equalTo(self.mas_centerX);
             make.height.mas_equalTo(30);
         }];
         _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:247 / 255.0 green:232 / 255.0 blue:90 / 255.0 alpha:1];

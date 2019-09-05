@@ -34,10 +34,8 @@
 #define WDRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 #import <Masonry/Masonry.h>
-#import "UIButton+DHQStyle.h"
-#import "UIView+DHQExtension.h"
 #import "GlobalConst.h"
-#import "WDUtil_Web.h"
+#import "CCWebSetting.h"
 
 #endif
 

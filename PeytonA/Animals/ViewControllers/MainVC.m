@@ -2,15 +2,16 @@
 //  MainVC.m
 //  PeytonA
 //
-//  Created by Peyton on 2019/8/19.
-//  Copyright © 2019 乐培培. All rights reserved.
+//  Created by Company on 2019/8/19.
+//  Copyright © 2019 Company. All rights reserved.
 //
 
 #import "MainVC.h"
 #import "DataSource.h"
 #import "MainCollectionViewCell.h"
 #import "BigPictureVC.h"
-
+#import "TransitionAnimation.h"
+#import "DismissTransitionAnimation.h"
 
 #define Screen_Width CGRectGetWidth([UIScreen mainScreen].bounds)
 #define Screen_Height CGRectGetHeight([UIScreen mainScreen].bounds)
@@ -24,14 +25,17 @@ static const float interitemSpacing = 20;
 
 NSString *const reuseID = @"mainPageCell";
 
-@interface MainVC ()
+@interface MainVC ()<UIViewControllerTransitioningDelegate>
 //背景图
 @property (nonatomic, strong)UIImageView *backgroundImageView;
 //collectionView
 @property (nonatomic, strong)UICollectionView *collectionView;
 //dataSource
 @property (nonatomic, strong)DataSource *dataSource;
-
+//transtionAnimation
+@property (nonatomic, strong)TransitionAnimation *transitionAnimation;
+//
+@property (nonatomic, strong)DismissTransitionAnimation *dismissTransitionAnimation;
 @end
 
 @implementation MainVC
@@ -39,8 +43,19 @@ NSString *const reuseID = @"mainPageCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self collectionView];
+    _transitionAnimation = [[TransitionAnimation alloc]init];
+    _dismissTransitionAnimation = [DismissTransitionAnimation new];
 }
 
+#pragma mark
+- (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+
+    return self.transitionAnimation;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self.dismissTransitionAnimation;
+}
 #pragma mark lazy
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
@@ -92,6 +107,7 @@ NSString *const reuseID = @"mainPageCell";
             __strong typeof(self) strongSelf = weakSelf;
             BigPictureVC* vc = [BigPictureVC new];
             vc.animalModel = model;
+            vc.transitioningDelegate = strongSelf;
             [strongSelf presentViewController:vc animated:YES completion:^{
                 //加载大图页面完成
             }];

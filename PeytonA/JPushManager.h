@@ -10,6 +10,7 @@
 
 @interface JPushManager : NSObject
 
+
 + (void)configJPush:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions;
 
 + (void)handleRemoteNotification:(NSDictionary *)userInfo

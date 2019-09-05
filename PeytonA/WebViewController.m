@@ -9,10 +9,10 @@
 #import "WebViewController.h"
 #import "Reachability.h"
 #import <WebKit/WebKit.h>
-#import "WDTabButton.h"
+#import "CCBottomBtn.h"
 #import "SVProgressHUD/SVProgressHUD.h"
-#import "WDObserverMgr.h"
-#import "WDHeader.h"
+#import "CCObserverManager.h"
+#import "CCHeader.h"
 
 typedef NS_ENUM(NSInteger, ConnectTimes) {
     FirstTime,
@@ -68,21 +68,21 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
 - (void)observer {
     [self monitorNetStatus];
     WEAKSELF
-    [[WDObserverMgr mgr] addObj:self.webView keyPath:@"estimatedProgress" block:^(NSDictionary *change) {
+    [[CCObserverManager manager] addObject:self.webView andKP:@"estimatedProgress" block:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull changes) {
         STRONGSELF
         if (self.resFlag) {
-            if ([change[NSKeyValueChangeNewKey] floatValue] >= 1) [SVProgressHUD dismiss];
+            if ([changes[NSKeyValueChangeNewKey] floatValue] >= 1) [SVProgressHUD dismiss];
         }
     }];
     
-    [[WDObserverMgr mgr] addObj:self keyPath:@"netStatus" block:^(NSDictionary *change) {
+    [[CCObserverManager manager] addObject:self andKP:@"netStatus" block:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull changes) {
         STRONGSELF
-        if ([change[NSKeyValueChangeNewKey] integerValue] == NotReachable) {
+        if ([changes[NSKeyValueChangeNewKey] integerValue] == NotReachable) {
             [SVProgressHUD showErrorWithStatus:@"网络开小差了..."];
             if (!self.isLoadFinish) self.noNetView.hidden = NO;
         }
-        if ([change[NSKeyValueChangeOldKey] integerValue] == NotReachable
-            && [change[NSKeyValueChangeNewKey] integerValue] != NotReachable) {
+        if ([changes[NSKeyValueChangeOldKey] integerValue] == NotReachable
+            && [changes[NSKeyValueChangeNewKey] integerValue] != NotReachable) {
             [self reConnect];
         }
     }];
@@ -90,11 +90,11 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
 
 #pragma mark - ------ UI ------
 - (void)createStructureView {
-    [self createBottomBarView];
+    [self createBottomView];
     [self createNoNetView];
 }
 
-- (void)createBottomBarView {
+- (void)createBottomView {
     self.bottomBarView = [UIView new];
     [self.view addSubview:self.bottomBarView];
     [self.bottomBarView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,25 +108,25 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
         make.height.mas_equalTo(kBottomSafeHeight);
     }];
 
-    NSArray *btnIcons = @[@"cc",@"aa",@"bb",@"ee",@"dd"];
+    NSArray *btnIcons = @[@"fa",@"fb",@"fv",@"fd",@"fc"];
     NSArray *btnNames = @[@"首页",@"后退",@"前进",@"刷新",@"退出"];
-    UIButton *lastBtn = nil;
+    UIButton *btn = nil;
     for (int i = 0, l = (int)btnIcons.count; i < l; ++i) {
-        WDTabButton *btn = [WDTabButton buttonWithType:UIButtonTypeCustom];
-        [btn addTarget:self action:@selector(goingBT:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bottomBarView addSubview:btn];
-        btn.tag = 200 + i;
-        [btn setImage:[UIImage imageNamed:btnIcons[i]] forState:UIControlStateNormal];
-        [btn setTitle:btnNames[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        CCBottomBtn *button = [CCBottomBtn buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(tapBottomButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomBarView addSubview:button];
+        button.tag = 200 + i;
+        [button setImage:[UIImage imageNamed:btnIcons[i]] forState:UIControlStateNormal];
+        [button setTitle:btnNames[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@49);
             make.bottom.equalTo(blankView.mas_top);
             make.top.equalTo(self.bottomBarView.mas_top);
             
-            if (lastBtn) {
-                make.left.equalTo(lastBtn.mas_right);
-                make.width.equalTo(lastBtn);
+            if (btn) {
+                make.left.equalTo(btn.mas_right);
+                make.width.equalTo(btn);
             } else {
                 make.left.equalTo(self.bottomBarView.mas_left);
             }
@@ -134,7 +134,7 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
                 make.right.equalTo(self.bottomBarView.mas_right);
             }
         }];
-        lastBtn = btn;
+        btn = button;
     }
 }
 
@@ -195,7 +195,7 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
 }
 
 #pragma mark - ------ 底部 导航栏 ------
-- (void)goingBT:(UIButton *)sender {
+- (void)tapBottomButton:(UIButton *)sender {
     if (sender.tag ==200) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webViewURL]]];
     }else if (sender.tag ==201) {
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSInteger, ConnectTimes) {
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1){
-        [WDUtil_Web cleanCacheAndCookie];
+        [CCWebSetting deleteStores];
         exit(0);
     }
 }

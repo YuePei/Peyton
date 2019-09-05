@@ -2,8 +2,8 @@
 //  DataSource.m
 //  PeytonA
 //
-//  Created by Peyton on 2019/8/19.
-//  Copyright © 2019 乐培培. All rights reserved.
+//  Created by Company on 2019/8/19.
+//  Copyright © 2019 Company. All rights reserved.
 //
 
 #import "DataSource.h"

@@ -2,7 +2,7 @@
 //  UILabel+Spacing.h
 //  PeytonA
 //
-//  Created by Peyton on 2019/8/21.
+//  Created by Company on 2019/8/21.
 //  Copyright © 2019 乐培培. All rights reserved.
 //
 

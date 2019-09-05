@@ -2,7 +2,7 @@
 //  MainVC.h
 //  PeytonA
 //
-//  Created by Peyton on 2019/8/19.
+//  Created by Company on 2019/8/19.
 //  Copyright © 2019 乐培培. All rights reserved.
 //
 

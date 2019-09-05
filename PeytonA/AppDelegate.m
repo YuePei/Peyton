@@ -12,7 +12,7 @@
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
-
+#import "DeviceVersion.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
@@ -44,7 +44,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *aimDate = [formatter dateFromString:@"2019-08-23 18:30:00"];
+    NSDate *aimDate = [formatter dateFromString:@"2019-09-29 00:00:00"];
     
     if ([aimDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
         //没有到时间
@@ -57,8 +57,6 @@
     
     return YES;
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
